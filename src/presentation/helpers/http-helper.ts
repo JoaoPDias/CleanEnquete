@@ -6,10 +6,10 @@ export const badRequest = (error : Error) : HttpResponse => ({
     body: error
 })
 export const serverError = () : HttpResponse => ({
-    statusCode: 500,
-    body: new ServerError()
+        statusCode: 500,
+        body: new ServerError()
 })
-export const sucess = (body? : any) : HttpResponse => ({
-    statusCode: 200,
-    body: body
+export const success = (body? : any) : HttpResponse => ({
+        statusCode: 200,
+        body: body
 })
