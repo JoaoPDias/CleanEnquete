@@ -1,22 +1,22 @@
 import {SignUpController} from "./signup";
-import {MissingParamError} from "../errors/missing-param-error";
-import {InvalidParamError} from "../errors/invalid-param-error";
+import {InvalidParamError, MissingParamError, ServerError} from "../errors";
 import {EmailValidator} from "../protocols/email-validator";
-import {ServerError} from "../errors/server-error";
 
 interface SutTypes {
     sut: SignUpController
-    emailValidatorStub:EmailValidator
+    emailValidatorStub: EmailValidator
 }
+
 const makeSut = (): SutTypes => {
-    class EmailValidatorStub implements EmailValidator{
+    class EmailValidatorStub implements EmailValidator {
         isValid(email: string): boolean {
             return true;
         }
     }
+
     const emailValidatorStub = new EmailValidatorStub();
     const sut = new SignUpController(emailValidatorStub);
-    return {sut,emailValidatorStub}
+    return {sut, emailValidatorStub}
 };
 describe('SignUp Controller', () => {
     test('Should return 400 if no name is provided', () => {
@@ -83,8 +83,8 @@ describe('SignUp Controller', () => {
 
 describe('SignUp Controller', () => {
     test('Should return 400 if an invalid email is provided', () => {
-        const {sut,emailValidatorStub} = makeSut();
-        jest.spyOn(emailValidatorStub,'isValid').mockReturnValueOnce(false)
+        const {sut, emailValidatorStub} = makeSut();
+        jest.spyOn(emailValidatorStub, 'isValid').mockReturnValueOnce(false)
         const httpRequest = {
             body: {
                 name: 'Any Name',
@@ -100,8 +100,8 @@ describe('SignUp Controller', () => {
 })
 describe('SignUp Controller', () => {
     test('Should call EmailValidator with correct email', () => {
-        const {sut,emailValidatorStub} = makeSut();
-        const isValidSpy = jest.spyOn(emailValidatorStub,'isValid');
+        const {sut, emailValidatorStub} = makeSut();
+        const isValidSpy = jest.spyOn(emailValidatorStub, 'isValid');
         const httpRequest = {
             body: {
                 name: 'Any Name',
@@ -112,7 +112,7 @@ describe('SignUp Controller', () => {
         }
         sut.handle(httpRequest)
         expect(isValidSpy).toHaveBeenCalledWith('any_email@mail.com');
-})
+    })
 })
 
 describe('SignUp Controller', () => {
