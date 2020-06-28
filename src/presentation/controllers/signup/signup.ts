@@ -1,7 +1,6 @@
-import {Controller, EmailValidator, HttpRequest, HttpResponse} from "../protocols";
-import {InvalidParamError, MissingParamError} from "../errors";
-import {badRequest, serverError} from "../helpers/http-helper";
-import {AddAccount} from "../../domain/usecases/add-account";
+import {AddAccount, Controller, EmailValidator, HttpRequest, HttpResponse} from "./signup-protocols";
+import {InvalidParamError, MissingParamError} from "../../errors";
+import {badRequest, serverError} from "../../helpers/http-helper";
 
 export class SignUpController implements Controller {
     private readonly _emailValidator : EmailValidator;
@@ -12,7 +11,7 @@ export class SignUpController implements Controller {
         this._addAccountStub = addAccountStub;
     }
 
-    handle(httpRequest: HttpRequest): HttpResponse {
+    handle(httpRequest : HttpRequest) : HttpResponse {
         try {
             const requiredFields = ['name', 'email', 'password', 'passwordConfirmation']
             for (const field of requiredFields) {
