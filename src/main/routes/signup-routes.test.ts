@@ -1,6 +1,7 @@
 import app from "../config/app";
 import request from "supertest";
 import {MongoHelper} from "../../infra/db/mongodb/helpers/mongo-helper";
+
 beforeAll(async () => {
     await MongoHelper.connect(process.env.MONGO_URL)
 })
@@ -23,7 +24,6 @@ describe('SignUp Route', () => {
                 passwordConfirmation: '123'
             })
             .expect(200)
-            .expect({ok: 'ok'})
 
     })
 })
