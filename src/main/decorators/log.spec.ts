@@ -56,4 +56,17 @@ describe('LogController Decorator', () => {
         const httpResponse = await sut.handle(httpRequest)
         expect(httpResponse).toEqual({statusCode: 200, body: {name: 'Rodrigo'}})
     })
+    test('Should call LogErrorRepository with correct erro if controller returns a server error', async () => {
+        const {sut, controllerStub} = makeSut()
+        const httpRequest = {
+            body: {
+                email: 'any_email@mail.com',
+                name: 'Any Name',
+                password: 'any_password',
+                passwordConfirmation: 'any_password'
+            }
+        }
+        const httpResponse = await sut.handle(httpRequest)
+        expect(httpResponse).toEqual({statusCode: 200, body: {name: 'Rodrigo'}})
+    })
 });
