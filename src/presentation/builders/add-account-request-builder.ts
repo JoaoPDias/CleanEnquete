@@ -1,4 +1,4 @@
-import {AddAccountRequest} from "./buildersModels/add-account-request";
+import {AddAccountRequest} from "./buildersModels/AddAccount/add-account-request";
 
 export class AddAccountRequestBuilder {
     private readonly _addAccountRequest;
