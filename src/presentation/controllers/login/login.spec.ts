@@ -1,9 +1,11 @@
 import {LoginController} from "./login";
 import {LoginRequestBuilder} from "../../builders/login-request-builder";
-import {badRequest, serverError} from "../../helpers/http-helper";
+import {badRequest, serverError, unauthorized} from "../../helpers/http-helper";
 import {InvalidParamError, MissingParamError} from "../../errors";
 import {EmailValidator} from "../../protocols/email-validator";
 import {Authentication} from "../../../domain/usecases/authentication";
+
+const httpRequestDefault = {body: LoginRequestBuilder.new().email('invalid_email@mail.com').build()}
 
 const makeEmailValidator = () : EmailValidator => {
     class EmailValidatorStub implements EmailValidator {
@@ -71,8 +73,7 @@ describe('Login Controller', () => {
     test('Should return 400 if an invalid email is provided', async () => {
         const {sut, emailValidatorStub} = makeSut()
         jest.spyOn(emailValidatorStub, 'isValid').mockReturnValueOnce(false)
-        const httpRequest = {body: LoginRequestBuilder.new().email('invalid_email@mail.com').build()}
-        const httpResponse = await sut.handle(httpRequest)
+        const httpResponse = await sut.handle(httpRequestDefault)
         expect(httpResponse).toStrictEqual(badRequest(new InvalidParamError('email')))
     });
     test('Should return 500 if EmailValidator throws', async () => {
@@ -86,9 +87,13 @@ describe('Login Controller', () => {
     test('Should call Authentication with correct values', async () => {
         const {sut, authenticationStub} = makeSut()
         const authSpy = jest.spyOn(authenticationStub, 'auth')
-        const loginRequest = LoginRequestBuilder.new().build()
-        const httpRequest = {body: loginRequest}
-        await sut.handle(httpRequest)
-        expect(authSpy).toHaveBeenCalledWith(loginRequest.email, loginRequest.password)
+        await sut.handle(httpRequestDefault)
+        expect(authSpy).toHaveBeenCalledWith(httpRequestDefault.body.email, httpRequestDefault.body.password)
+    });
+    test('Should return 401 if invalid credentials are provided', async () => {
+        const {sut, authenticationStub} = makeSut()
+        jest.spyOn(authenticationStub, 'auth').mockReturnValueOnce(Promise.resolve(null))
+        const httpResponse = await sut.handle(httpRequestDefault)
+        expect(httpResponse).toStrictEqual(unauthorized())
     });
 });
