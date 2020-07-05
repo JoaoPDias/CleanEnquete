@@ -18,7 +18,7 @@ export class LoginController implements Controller {
             const requiredFields = ['email', 'password']
             for (const field of requiredFields) {
                 if (!httpRequest.body[field]) {
-                    return Promise.resolve(badRequest(new MissingParamError(field)))
+                    return badRequest(new MissingParamError(field))
                 }
             }
             const {email, password} = httpRequest.body
