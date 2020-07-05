@@ -4,7 +4,7 @@ import {badRequest, serverError, success, unauthorized} from "../../helpers/http
 import {InvalidParamError, MissingParamError} from "../../errors";
 import {Authentication, EmailValidator} from "./login-protocols";
 
-const httpRequestDefault = {body: LoginRequestBuilder.new().email('invalid_email@mail.com').build()}
+const httpRequestDefault = {body: LoginRequestBuilder.new().build()}
 
 const makeEmailValidator = () : EmailValidator => {
     class EmailValidatorStub implements EmailValidator {
