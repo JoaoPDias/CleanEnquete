@@ -1,4 +1,4 @@
-import {AccountModel} from "../../domain/models/account";
+import {AccountModel} from "../models/account";
 
 export class AccountModelBuilder {
     private readonly _accountModel : AccountModel;

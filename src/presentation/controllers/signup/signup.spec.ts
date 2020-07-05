@@ -3,7 +3,7 @@ import {InvalidParamError, MissingParamError, ServerError} from "../../errors";
 import {AccountModel, AddAccount, AddAccountModel, EmailValidator} from "./signup-protocols";
 import {AddAccountRequestBuilder} from "../../builders/add-account-request-builder";
 import {badRequest, serverError, success} from "../../helpers/http-helper";
-import {AccountModelBuilder} from "../../builders/account-model-builder";
+import {AccountModelBuilder} from "../../../domain/builders/account-model-builder";
 
 
 const makeEmailValidator = () : EmailValidator => {
