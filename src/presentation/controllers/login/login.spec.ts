@@ -1,7 +1,7 @@
 import {LoginController} from "./login";
 import {LoginRequestBuilder} from "../../builders/login-request-builder";
 import {badRequest} from "../../helpers/http-helper";
-import {MissingParamError} from "../../errors";
+import {InvalidParamError, MissingParamError} from "../../errors";
 import {EmailValidator} from "../../protocols/email-validator";
 
 const makeEmailValidator = () : EmailValidator => {
@@ -51,6 +51,13 @@ describe('Login Controller', () => {
         const httpRequest = {body: loginRequest}
         await sut.handle(httpRequest)
         expect(isValidSpy).toHaveBeenCalledWith(loginRequest.email)
+    });
+    test('Should return 400 if an invalid email is provided', async () => {
+        const {sut, emailValidatorStub} = makeSut()
+        jest.spyOn(emailValidatorStub, 'isValid').mockReturnValueOnce(false)
+        const httpRequest = {body: LoginRequestBuilder.new().email('invalid_email@mail.com').build()}
+        const httpResponse = await sut.handle(httpRequest)
+        expect(httpResponse).toStrictEqual(badRequest(new InvalidParamError('email')))
     });
 
 });
