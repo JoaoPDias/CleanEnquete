@@ -2,8 +2,7 @@ import {LoginController} from "./login";
 import {LoginRequestBuilder} from "../../builders/login-request-builder";
 import {badRequest, serverError, unauthorized} from "../../helpers/http-helper";
 import {InvalidParamError, MissingParamError} from "../../errors";
-import {EmailValidator} from "../../protocols/email-validator";
-import {Authentication} from "../../../domain/usecases/authentication";
+import {Authentication, EmailValidator} from "./login-protocols";
 
 const httpRequestDefault = {body: LoginRequestBuilder.new().email('invalid_email@mail.com').build()}
 
