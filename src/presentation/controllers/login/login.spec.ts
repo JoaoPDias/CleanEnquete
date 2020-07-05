@@ -1,6 +1,6 @@
 import {LoginController} from "./login";
 import {LoginRequestBuilder} from "../../builders/login-request-builder";
-import {badRequest} from "../../helpers/http-helper";
+import {badRequest, serverError} from "../../helpers/http-helper";
 import {InvalidParamError, MissingParamError} from "../../errors";
 import {EmailValidator} from "../../protocols/email-validator";
 
@@ -14,6 +14,7 @@ const makeEmailValidator = () : EmailValidator => {
 
     return new EmailValidatorStub()
 }
+
 interface SutTypes {
     sut : LoginController
     emailValidatorStub : EmailValidator
@@ -58,6 +59,14 @@ describe('Login Controller', () => {
         const httpRequest = {body: LoginRequestBuilder.new().email('invalid_email@mail.com').build()}
         const httpResponse = await sut.handle(httpRequest)
         expect(httpResponse).toStrictEqual(badRequest(new InvalidParamError('email')))
+    });
+    test('Should return 500 if EmailValidator throws', async () => {
+        const {sut, emailValidatorStub} = makeSut()
+        jest.spyOn(emailValidatorStub, 'isValid').mockImplementationOnce(() => {
+            throw new Error()
+        })
+        const httpResponse = await sut.handle({body: LoginRequestBuilder.new().build()})
+        expect(httpResponse).toStrictEqual(serverError(new Error()))
     });
 
 });
