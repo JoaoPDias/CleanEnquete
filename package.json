@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "sucrase-node src/main/server.ts",
+    "start:watch": "nodemon",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:ci": "npm test -- --coverage",
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
@@ -12,6 +13,22 @@
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "lint": "eslint . --ext .ts"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts",
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "exec": "npm start",
+    "events": {
+      "start": "cls || clear"
+    }
   },
   "keywords": [],
   "author": "",
@@ -32,6 +49,7 @@
     "husky": "^4.2.5",
     "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
+    "nodemon": "^2.0.4",
     "sucrase": "^3.15.0",
     "supertest": "^4.0.2",
     "ts-jest": "^26.1.1",
