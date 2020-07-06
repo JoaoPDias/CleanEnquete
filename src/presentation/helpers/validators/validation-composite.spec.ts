@@ -2,31 +2,31 @@ import {ValidationComposite} from "./validation-composite";
 import {MissingParamError} from "../../errors";
 import {Validation} from "./validation";
 
-const makeRequiredFieldStub = () : Validation => {
-    class RequiredFieldStub implements Validation {
+const makeValidationStub = () : Validation => {
+    class ValidationStub implements Validation {
         validate(input : any) : Error {
-            return undefined;
+            return null;
         }
 
     }
 
-    return new RequiredFieldStub()
+    return new ValidationStub()
 }
 
 interface SutTypes {
     sut : ValidationComposite
-    requiredFieldStub : Validation
+    validationStub : Validation
 }
 
 const makeSut = () : SutTypes => {
-    const requiredFieldStub = makeRequiredFieldStub()
-    const sut = new ValidationComposite([requiredFieldStub])
-    return {sut, requiredFieldStub}
+    const validationStub = makeValidationStub()
+    const sut = new ValidationComposite([validationStub])
+    return {sut, validationStub}
 }
 describe('Validation Composite', () => {
     test('Should return an error if any validation fails', () => {
-        const {sut, requiredFieldStub} = makeSut()
-        jest.spyOn(requiredFieldStub, 'validate').mockReturnValueOnce(new MissingParamError('name'))
+        const {sut, validationStub} = makeSut()
+        jest.spyOn(validationStub, 'validate').mockReturnValueOnce(new MissingParamError('name'))
         const error = sut.validate({field: 'any_value'})
         expect(error).toEqual(new MissingParamError('name'))
     });
