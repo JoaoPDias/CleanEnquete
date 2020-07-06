@@ -8,13 +8,12 @@ export class ValidationComposite implements Validation {
     }
 
     validate(input : any) : Error {
-        this._validations.forEach((validation) => {
+        for (const validation of this._validations) {
             const error = validation.validate(input)
             if (error) {
-                return error
+                return error;
             }
-        })
-        return null
+        }
     }
 
 }
