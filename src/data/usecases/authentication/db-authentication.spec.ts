@@ -14,12 +14,25 @@ const makeLoadAccountByEmail = () => {
 
     return new LoadAccountByEmailRepositoryStub()
 }
+
+interface SutTypes {
+    sut : DbAuthentication
+    loadAccountByEmailRepositoryStub : LoadAccountByEmailRepository
+}
+
+const makeSut = () : SutTypes => {
+    const loadAccountByEmailRepositoryStub = makeLoadAccountByEmail()
+    const sut = new DbAuthentication(loadAccountByEmailRepositoryStub)
+    return {
+        sut,
+        loadAccountByEmailRepositoryStub
+    }
+}
 const authenticationModel = AuthenticationModelBuilder.new().build()
 describe('DbAuthentication UseCase', () => {
     test('Should call LoadAccountByEmailRepository with correct email', async () => {
-        const loadAccountByEmailRepositoryStub = makeLoadAccountByEmail()
+        const {sut, loadAccountByEmailRepositoryStub} = makeSut()
         const loadSpy = jest.spyOn(loadAccountByEmailRepositoryStub, 'load')
-        const sut = new DbAuthentication(loadAccountByEmailRepositoryStub)
         await sut.auth(authenticationModel)
         expect(loadSpy).toHaveBeenCalledWith(authenticationModel.email)
     });
