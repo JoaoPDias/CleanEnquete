@@ -8,7 +8,7 @@ import {
     AddAccountRequestBuilder,
     Validation
 } from "./signup-protocols";
-import {badRequest, serverError, success} from "../../helpers/http-helper";
+import {badRequest, serverError, success} from "../../helpers/http/http-helper";
 
 
 const httpRequestDefault = {body: AddAccountRequestBuilder.new().build()}
