@@ -15,7 +15,7 @@ const makeEmailValidator = () : EmailValidator => {
     return new EmailValidatorStub();
 }
 jest.mock('../../../presentation/helpers/validators/validation-composite')
-describe('SignUpValidator', () => {
+describe('LoginValidation', () => {
     test('Should call ValidationComposite with all validations', () => {
         makeLoginValidation()
         const validations : Validation[] = []

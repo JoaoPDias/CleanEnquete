@@ -6,8 +6,8 @@ export class LoginController implements Controller {
     private _authentication : Authentication;
     private _validation : Validation;
 
-    constructor(authenticationStub : Authentication, validation : Validation) {
-        this._authentication = authenticationStub;
+    constructor(authentication : Authentication, validation : Validation) {
+        this._authentication = authentication;
         this._validation = validation;
     }
 
