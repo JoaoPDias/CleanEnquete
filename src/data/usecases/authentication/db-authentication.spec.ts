@@ -1,6 +1,6 @@
 import {AccountModel} from "../../../domain/models/account";
 import {AccountModelBuilder} from "../../../domain/builders/account-model-builder";
-import {LoadAccountByEmailRepository} from "../../protocols/load-account-by-email.repository";
+import {LoadAccountByEmailRepository} from "../../protocols/db/load-account-by-email.repository";
 import {DbAuthentication} from "./db.authentication";
 import {AuthenticationModelBuilder} from "../../../presentation/builders/authentication-model-builder";
 
