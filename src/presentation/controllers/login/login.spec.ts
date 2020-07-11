@@ -1,9 +1,9 @@
 import {LoginController} from "./login";
 import {badRequest, serverError, success, unauthorized} from "../../helpers/http/http-helper";
 import {MissingParamError} from "../../errors";
-import {Authentication, AuthenticationModel, LoginRequestBuilder, Validation} from "./login-protocols";
+import {Authentication, AuthenticationModel, AuthenticationModelBuilder, Validation} from "./login-protocols";
 
-const httpRequestDefault = {body: LoginRequestBuilder.new().build()}
+const httpRequestDefault = {body: AuthenticationModelBuilder.new().build()}
 
 
 const makeAuthentication = () : Authentication => {
