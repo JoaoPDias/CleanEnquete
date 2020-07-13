@@ -1,4 +1,4 @@
-import {AuthenticationModel} from "../../domain/usecases/authentication";
+import {AuthenticationModel} from "../usecases/authentication";
 
 export class AuthenticationModelBuilder {
     private authenticationModel : AuthenticationModel;
