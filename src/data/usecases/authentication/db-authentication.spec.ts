@@ -107,4 +107,10 @@ describe('DbAuthentication UseCase', () => {
         const promise = sut.auth(authenticationModel)
         await expect(promise).rejects.toThrow()
     });
+    test('Should return validToken if TokenGenerator returns a valid token', async () => {
+        const {sut, tokenGeneratorStub} = makeSut()
+        jest.spyOn(tokenGeneratorStub, 'generate')
+        const accessToken = await sut.auth(authenticationModel)
+        expect(accessToken).toBe('valid_token')
+    });
 });
