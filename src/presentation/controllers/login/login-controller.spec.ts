@@ -1,7 +1,12 @@
-import {LoginController} from "./login";
+import {LoginController} from "./login-controller";
 import {badRequest, serverError, success, unauthorized} from "../../helpers/http/http-helper";
 import {MissingParamError} from "../../errors";
-import {Authentication, AuthenticationModel, AuthenticationModelBuilder, Validation} from "./login-protocols";
+import {
+    Authentication,
+    AuthenticationModel,
+    AuthenticationModelBuilder,
+    Validation
+} from "./login-controller-protocols";
 
 const httpRequestDefault = {body: AuthenticationModelBuilder.new().build()}
 

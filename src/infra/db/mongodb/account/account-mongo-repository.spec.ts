@@ -1,5 +1,5 @@
 import {MongoHelper} from "../helpers/mongo-helper";
-import {AccountMongoRepository} from "./account";
+import {AccountMongoRepository} from "./account-mongo-repository";
 import {Collection} from "mongodb";
 import {AddAccountModelBuilder} from "../../../../data/usecases/add-account/builders/add-account-model-builder";
 
