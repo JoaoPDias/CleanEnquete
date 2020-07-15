@@ -1,7 +1,6 @@
 import {MongoHelper} from "../infra/db/mongodb/helpers/mongo-helper";
 import Environment from "./config/env";
 
-console.log(Environment.db)
 MongoHelper.connect(Environment.db)
     .then(async () => {
         const app = (await import('./config/app')).default
