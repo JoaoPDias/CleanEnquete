@@ -9,6 +9,7 @@ module.exports = {
         '!<rootDir>/src/main/**'
     ],
     coverageDirectory: "coverage",
+    modulePathIgnorePatterns: ["env"],
     roots: ['<rootDir>/src'],
     preset: '@shelf/jest-mongodb',
     testEnvironment: "node",
