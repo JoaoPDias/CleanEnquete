@@ -11,6 +11,10 @@ export class AddAccountModelBuilder {
         }
     }
 
+    static new() {
+        return new AddAccountModelBuilder()
+    }
+
     name(name : string) : AddAccountModelBuilder {
         this._addAccountModel.name = name
         return this
@@ -22,7 +26,7 @@ export class AddAccountModelBuilder {
     }
 
     password(password : string) : AddAccountModelBuilder {
-        this._addAccountModel.password
+        this._addAccountModel.password = password
         return this
     }
 
