@@ -1,10 +1,10 @@
 import dotenv from 'dotenv'
 
 dotenv.config();
-let Environment
+export let Environment
 if (process.env.NODE_ENV === 'test') {
-    Environment = require(`./env/development`);
+    Environment = require(`./environments/development`);
 } else {
-    Environment = require(`./env/${process.env.NODE_ENV}`);
+    Environment = require(`./environments/${process.env.NODE_ENV}`);
 }
 export default Environment.Environment
