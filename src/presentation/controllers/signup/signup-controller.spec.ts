@@ -9,10 +9,20 @@ import {
     Validation
 } from "./signup-controller-protocols";
 import {badRequest, serverError, success} from "../../helpers/http/http-helper";
+import {Authentication, AuthenticationModel} from "../../../domain/usecases/authentication";
 
 
 const httpRequestDefault = {body: AddAccountRequestBuilder.new().build()}
+const makeAuthentication = () : Authentication => {
+    class AuthenticationStub implements Authentication {
+        async auth(authentication : AuthenticationModel) : Promise<string> {
+            return Promise.resolve('valid_token');
+        }
 
+    }
+
+    return new AuthenticationStub()
+}
 const makeAddAccount = () : AddAccount => {
     class AddAccountStub implements AddAccount {
         async add(account : AddAccountModel) : Promise<AccountModel> {
@@ -37,14 +47,16 @@ interface SutTypes {
     sut : SignUpController
     addAccountStub : AddAccount
     validationStub : Validation
+    authenticationStub : Authentication
 }
 
 
 const makeSut = () : SutTypes => {
     const addAccountStub = makeAddAccount();
     const validationStub = makeValidation();
-    const sut = new SignUpController(addAccountStub, validationStub);
-    return {sut, addAccountStub, validationStub}
+    const authenticationStub = makeAuthentication()
+    const sut = new SignUpController(addAccountStub, validationStub, authenticationStub);
+    return {sut, addAccountStub, validationStub, authenticationStub}
 };
 describe('SignUp Controller', () => {
     test('Should call AddAccount with correct values', () => {
@@ -88,5 +100,13 @@ describe('SignUp Controller', () => {
         const httpResponse = await sut.handle(httpRequestDefault)
         expect(httpResponse).toStrictEqual(badRequest(new MissingParamError('any_field')))
     })
-
+    test('Should call Authentication with correct values', async () => {
+        const {sut, authenticationStub} = makeSut()
+        const authSpy = jest.spyOn(authenticationStub, 'auth')
+        await sut.handle(httpRequestDefault)
+        expect(authSpy).toHaveBeenCalledWith({
+            email: httpRequestDefault.body.email,
+            password: httpRequestDefault.body.password
+        })
+    });
 })
