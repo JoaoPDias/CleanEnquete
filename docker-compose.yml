@@ -1,0 +1,22 @@
+version:"3"
+services:
+  mongo:
+    container_name: mongo-container
+    image: mongo:3
+    restart:always
+    volumes:
+      - ./database:/data/db
+    ports:
+      -"27017":27017
+  api:
+    container_name:api_container
+    build:.
+    image: clean-survey
+    restart:always
+    command:npm start
+    volumes:
+      - ./dist:/usr/src/cleanSurvey/dist
+    ports:
+      - "5050:5050"
+    links:
+      - mongo
