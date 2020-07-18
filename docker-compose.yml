@@ -10,10 +10,10 @@ services:
       - "27017:27017"
   api:
     container_name: api_container
-    build: .
-    image: clean-survey
+    image: node:12
+    working_dir: /usr/src/cleanSurvey/
     restart: always
-    command: npm run debug
+    command: bash -c "npm install --only=production && npm run debug"
     volumes:
       - ./dist:/usr/src/cleanSurvey/dist
       - ./package.json:/usr/src/cleanSurvey/package.json
