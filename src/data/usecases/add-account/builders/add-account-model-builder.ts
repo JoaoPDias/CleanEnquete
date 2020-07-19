@@ -6,7 +6,7 @@ export class AddAccountModelBuilder {
     constructor() {
         this._addAccountModel = {
             name: 'Valid Name',
-            email: 'validEmail@mail.com',
+            email: 'valid_email@mail.com',
             password: 'valid_password'
         }
     }
