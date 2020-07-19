@@ -15,7 +15,7 @@ services:
     restart: always
     command: bash -c "npm install --only=production && npm run debug"
     volumes:
-      - ./dist:/usr/src/cleanSurvey/dist
+      - ./dist/:/usr/src/cleanSurvey/dist
       - ./package.json:/usr/src/cleanSurvey/package.json
     ports:
       - "5050:5050"

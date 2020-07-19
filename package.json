@@ -5,11 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/main/server.js",
-    "debug": "node --inspect=0.0.0.0:9222 --nolazy dist/main/server.js",
+    "debug": "nodemon -L --watch ./dist/ --inspect=0.0.0.0:9222 --nolazy ./dist/main/server.js",
     "build": "rimraf dist && tsc",
-    "up": "npm run build && docker-compose up",
-    "down": "docker-compose down -d",
-    "start:watch": "nodemon",
+    "up": "npm run build && docker-compose up -d",
+    "down": "docker-compose down",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:ci": "npm test -- --coverage",
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
@@ -17,22 +16,6 @@
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "lint": "eslint . --ext .ts"
-  },
-  "nodemonConfig": {
-    "watch": [
-      "src"
-    ],
-    "ext": "ts",
-    "ignore": [
-      "**/*.test.ts",
-      "**/*.spec.ts",
-      ".git",
-      "node_modules"
-    ],
-    "exec": "npm start",
-    "events": {
-      "start": "cls || clear"
-    }
   },
   "keywords": [],
   "author": "",
@@ -66,6 +49,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.9",
+    "nodemon": "^2.0.4",
     "validator": "^13.1.1"
   },
   "engines": {
