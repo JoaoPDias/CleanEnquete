@@ -1,24 +1,24 @@
 # **Clean Survey**
 
-## [**Link para o curso completo**](https://www.udemy.com/course/tdd-com-mango/?referralCode=B53CE5CA2B9AFA5A6FA1)
+## [**Course Link**](https://www.udemy.com/course/tdd-com-mango/?referralCode=B53CE5CA2B9AFA5A6FA1)
 
 
-Essa API que estou criando é um aprendizado possibilitado pelo curso aplicado pelo professor Rodrigo Manguinho na Udemy.
 
-Um ótimo curso que busca demonstrar com profundidade todas as etapas de desenvolvimento e entrega de funcionalidades.
+This API that I am creating is a learning experience obtained in the course applied by professor Rodrigo Manguinho at Udemy.
 
-O objetivo do treinamento é mostrar como criar uma API com uma arquitetura bem definida e desacoplada, utilizando TDD (programação orientada a testes) como metodologia de trabalho, Clean Architecture para fazer a distribuição de responsabilidades em camadas, sempre seguindo os princípios do SOLID e, sempre que possível, aplicando Design Patterns para resolver alguns problemas comuns.
+A great course that seeks to demonstrate in depth all stages of development ,continuous Deployment, continuous integration and continuous delivery
 
-> ## APIs construídas no treinamento
+The objective of the training is to show how to create an API with a well-defined and decoupled architecture, using TDD as the working methodology, Clean Architecture to distribute responsibilities in layers, always following the principles of SOLID and, whenever possible, applying Design Patterns to solve some common problems.
+> ## APIs built in the training
 
-1. [Cadastro](requirements/signup.md)
+1. [SignUp](requirements/signup.md)
 2. [Login](requirements/login.md)
-3. [Criar enquete](requirements/add-survey.md)
-4. [Listar enquetes](requirements/load-surveys.md)
-5. [Responder enquete](requirements/save-survey-result.md)
-6. [Resultado da enquete](requirements/load-survey-result.md)
+3. [Survey Creation](requirements/add-survey.md)
+4. [Survey List](requirements/load-surveys.md)
+5. [Survey Reply](requirements/save-survey-result.md)
+6. [Survey Result](requirements/load-survey-result.md)
 
-> ## Princípios
+> ## Principles
 
 * Single Responsibility Principle (SRP)
 * Open Closed Principle (OCP)
@@ -44,7 +44,7 @@ O objetivo do treinamento é mostrar como criar uma API com uma arquitetura bem 
 * Composition Root
 * Builder
 
-> ## Metodologias e Designs
+> ## Methodologies and Designs
 
 * TDD
 * Clean Architecture
@@ -58,7 +58,7 @@ O objetivo do treinamento é mostrar como criar uma API com uma arquitetura bem 
 * Continuous Delivery
 * Continuous Deployment
 
-> ## Bibliotecas e Ferramentas
+> ## Frameworks and Tools
 
 * NPM
 * Typescript
@@ -87,21 +87,21 @@ O objetivo do treinamento é mostrar como criar uma API com uma arquitetura bem 
 * Copyfiles
 * Npm Check
 
-> ## Features do Node
+> ## Node Features
 
-* Documentação de API com Swagger
-* Log de Erro
-* Segurança (Hashing, Encryption e Encoding)
+* API documentation with Swagger
+* Error Log
+* Security (Hashing, Encryption e Encoding)
 * CORS
 * Middlewares
-* Nível de Acesso nas Rotas (Admin, User e Anônimo)
-* Deploy no Heroku
-* Servir Arquivos Estáticos
+* Access Level on Routes (Admin, User e Anônimo)
+* Deploy on Heroku
+* Serving Static Files
 
-> ## Features do Git
+> ## Git Features
 
 * Alias
-* Log Personalizado
+* Custom Log
 * Branch
 * Reset
 * Amend
@@ -110,29 +110,28 @@ O objetivo do treinamento é mostrar como criar uma API com uma arquitetura bem 
 * Rebase
 * Merge
 
-> ## Features do Typescript
+> ## Typescript Features
 
-* POO Avançado
+* Advanced OOP
 * Interface
 * TypeAlias
 * Utility Types
-* Modularização de Paths
+* Modularization of Paths
 * Build
 * Deploy
-* Uso de Breakpoints
+* Use of Breakpoints
 
-> ## Features de Testes
+> ## Test Features
 
-* Testes Unitários
-* Testes de Integração
-* Cobertura de Testes
+* Unit Tests
+* Test Coverage
 * Test Doubles
 * Mocks
 * Stubs
 * Spies
 * Fakes
 
-> ## Features do MongoDb
+> ## MongoDb Features
 
 * Connect e Reconnect
 * Collections
