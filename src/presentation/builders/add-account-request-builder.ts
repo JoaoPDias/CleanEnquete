@@ -1,7 +1,7 @@
-import {AddAccountRequest} from "./buildersModels/AddAccount/add-account-request";
+import {AddAccountRequest} from "./builders-models/add-account/add-account-request";
 
 export class AddAccountRequestBuilder {
-    private readonly _addAccountRequest;
+    private readonly _addAccountRequest : AddAccountRequest;
 
     private constructor() {
         this._addAccountRequest = {
@@ -16,22 +16,22 @@ export class AddAccountRequestBuilder {
         return new AddAccountRequestBuilder()
     }
 
-    name(name : string) : AddAccountRequestBuilder {
+    withName(name : string) : AddAccountRequestBuilder {
         this._addAccountRequest.name = name
         return this
     }
 
-    email(email : string) : AddAccountRequestBuilder {
+    withEmail(email : string) : AddAccountRequestBuilder {
         this._addAccountRequest.email = email
         return this
     }
 
-    password(password : string) : AddAccountRequestBuilder {
+    withPassword(password : string) : AddAccountRequestBuilder {
         this._addAccountRequest.password = password
         return this
     }
 
-    passwordConfirmation(passwordConfirmation : string) : AddAccountRequestBuilder {
+    withPasswordConfirmation(passwordConfirmation : string) : AddAccountRequestBuilder {
         this._addAccountRequest.passwordConfirmation = passwordConfirmation
         return this
     }

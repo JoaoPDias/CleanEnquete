@@ -14,12 +14,12 @@ export class AuthenticationModelBuilder {
         return new AuthenticationModelBuilder()
     }
 
-    email(email : string) : AuthenticationModelBuilder {
+    withEmail(email : string) : AuthenticationModelBuilder {
         this.authenticationModel.email = email
         return this
     }
 
-    password(password : string) : AuthenticationModelBuilder {
+    withPassword(password : string) : AuthenticationModelBuilder {
         this.authenticationModel.password = password
         return this
     }

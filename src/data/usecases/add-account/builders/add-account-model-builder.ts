@@ -15,17 +15,17 @@ export class AddAccountModelBuilder {
         return new AddAccountModelBuilder()
     }
 
-    name(name : string) : AddAccountModelBuilder {
+    withName(name : string) : AddAccountModelBuilder {
         this._addAccountModel.name = name
         return this
     }
 
-    email(email : string) : AddAccountModelBuilder {
+    withEmail(email : string) : AddAccountModelBuilder {
         this._addAccountModel.email = email
         return this
     }
 
-    password(password : string) : AddAccountModelBuilder {
+    withPassword(password : string) : AddAccountModelBuilder {
         this._addAccountModel.password = password
         return this
     }

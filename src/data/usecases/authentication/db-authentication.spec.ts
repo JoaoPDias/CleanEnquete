@@ -11,7 +11,7 @@ import {
 
 
 const authenticationModel = AuthenticationModelBuilder.new().build()
-const accountModel = AccountModelBuilder.new().password('hashed_password').build()
+const accountModel = AccountModelBuilder.new().withPassword('hashed_password').build()
 const makeLoadAccountByEmail = () => {
     class LoadAccountByEmailRepositoryStub implements LoadAccountByEmailRepository {
         async loadByEmail(email : string) : Promise<AccountModel> {

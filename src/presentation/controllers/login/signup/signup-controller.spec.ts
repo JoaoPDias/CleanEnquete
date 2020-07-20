@@ -1,5 +1,5 @@
 import {SignUpController} from "./signup-controller";
-import {EmailInUseError, MissingParamError, ServerError} from "../../errors";
+import {EmailInUseError, MissingParamError, ServerError} from "../../../errors";
 import {
     AccountModel,
     AccountModelBuilder,
@@ -8,8 +8,8 @@ import {
     AddAccountRequestBuilder,
     Validation
 } from "./signup-controller-protocols";
-import {badRequest, forbidden, serverError, success} from "../../helpers/http/http-helper";
-import {Authentication, AuthenticationModel} from "../../../domain/usecases/authentication";
+import {badRequest, forbidden, serverError, success} from "../../../helpers/http/http-helper";
+import {Authentication, AuthenticationModel} from "../../../../domain/usecases/authentication";
 
 
 const httpRequestDefault = {body: AddAccountRequestBuilder.new().build()}
@@ -76,7 +76,7 @@ describe('SignUp Controller', () => {
             return Promise.reject(new Error());
         });
         const httpRequest = {
-            body: AddAccountRequestBuilder.new().email("invalid_email@mail.com").build()
+            body: AddAccountRequestBuilder.new().withEmail("invalid_email@mail.com").build()
         }
         const httpResponse = await sut.handle(httpRequest)
         expect(httpResponse).toStrictEqual(serverError(new ServerError(null)))

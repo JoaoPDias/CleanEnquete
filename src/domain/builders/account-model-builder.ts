@@ -12,22 +12,22 @@ export class AccountModelBuilder {
         }
     }
 
-    id(id : string) : AccountModelBuilder {
+    withId(id : string) : AccountModelBuilder {
         this._accountModel.id = id
         return this
     }
 
-    name(name : string) : AccountModelBuilder {
+    withName(name : string) : AccountModelBuilder {
         this._accountModel.name = name
         return this
     }
 
-    email(email : string) : AccountModelBuilder {
+    withEmail(email : string) : AccountModelBuilder {
         this._accountModel.email = email
         return this
     }
 
-    password(password : string) : AccountModelBuilder {
+    withPassword(password : string) : AccountModelBuilder {
         this._accountModel.password = password
         return this
     }

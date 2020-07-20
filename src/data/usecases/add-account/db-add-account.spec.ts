@@ -4,7 +4,7 @@ import {AccountModelBuilder} from "../../../domain/builders/account-model-builde
 import {LoadAccountByEmailRepository} from "../../protocols/db/load-account-by-email-repository";
 import {AddAccountModelBuilder} from "./builders/add-account-model-builder";
 
-const fakeAccount = AccountModelBuilder.new().password('hashed_password').build()
+const fakeAccount = AccountModelBuilder.new().withPassword('hashed_password').build()
 const makeAddAccountRepository = () : AddAccountRepository => {
     class AddAccountRepositoryStub implements AddAccountRepository {
         async add(accountData : AddAccountModel) : Promise<AccountModel> {
